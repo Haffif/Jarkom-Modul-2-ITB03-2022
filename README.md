@@ -47,7 +47,8 @@ Kemudian setiap node diaktifkan dengan mengklik tombol start. Setelah itu, menja
 Untuk mempermudah mendapatkan informasi mengenai misi dari Handler, bantulah Loid membuat website utama dengan akses wise.yyy.com dengan alias www.wise.yyy.com pada folder wise
 
 ### Jawab soal 2
-Server WISE
+``Server WISE``
+
 Melakukan konfigurasi terhadap file /etc/bind/named.conf.local dengan menambahkan sebagai berikut:
 
 ```
