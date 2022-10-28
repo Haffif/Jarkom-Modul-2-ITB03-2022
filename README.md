@@ -57,3 +57,23 @@ zone "wise.itb03.com" {
 };
 ```
 
+kemudian, kami membuat direktori baru yaitu wise dengan command:
+`mkdir -p /etc/bind/wise`
+
+Lalu, menambahkan konfigurasi pada `/etc/bind/wise/wise.itb03.com` dengan sebagai berikut:
+```
+$TTL    604800
+@       IN      SOA     wise.itb03.com. root.wise.itb03.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@             IN      NS      wise.itb03.com.
+@             IN      A       10.46.2.2 ; IP WISE
+@             IN      AAAA    ::1
+www           IN      CNAME   wise.itb03.com.
+```
+
+Melakukan restart service bind9 dengan service bind9 restart
