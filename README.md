@@ -88,3 +88,15 @@ echo "nameserver 10.46.2.2" > /etc/resolv.conf
 ``` 
 
 ##### Testing
+`ping wise.itb03.com -c 5`
+
+![](gambar/8.png)
+
+`ping www.wise.itb03.com -c 5`
+
+![](gambar/9.png)
+
+`host -t CNAME www.wise.itb03.com`
+
+![](gambar/10.png)
+
