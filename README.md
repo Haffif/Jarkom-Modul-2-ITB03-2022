@@ -78,3 +78,13 @@ www           IN      CNAME   wise.itb03.com.
 ```
 
 Melakukan restart service bind9 dengan service bind9 restart
+
+``Server Berlint``
+
+```
+apt-get update  
+apt-get install dnsutils -y  
+echo "nameserver 10.46.2.2" > /etc/resolv.conf 
+``` 
+
+####Testing
