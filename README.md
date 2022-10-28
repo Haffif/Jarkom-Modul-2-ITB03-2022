@@ -10,4 +10,5 @@ Kelompok ITB03:
 WISE akan dijadikan sebagai DNS Master, Berlint akan dijadikan DNS Slave, dan Eden akan digunakan sebagai Web Server. Terdapat 2 Client yaitu SSS, dan Garden. Semua node terhubung pada router Ostania, sehingga dapat mengakses internet
 
 ### Jawab soal 1
-![](jarkom-aset-modul-2/1.png)
+
+![](gambar/1.png)
