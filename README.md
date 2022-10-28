@@ -47,7 +47,7 @@ Kemudian setiap node diaktifkan dengan mengklik tombol start. Setelah itu, menja
 Untuk mempermudah mendapatkan informasi mengenai misi dari Handler, bantulah Loid membuat website utama dengan akses wise.yyy.com dengan alias www.wise.yyy.com pada folder wise
 
 ### Jawab soal 2
-``Server WISE``
+#### Server WISE
 
 Melakukan konfigurasi terhadap file /etc/bind/named.conf.local dengan menambahkan sebagai berikut:
 
@@ -79,7 +79,7 @@ www           IN      CNAME   wise.itb03.com.
 
 Melakukan restart service bind9 dengan service bind9 restart
 
-``Server Berlint``
+#### Server Berlint
 
 ```
 apt-get update  
@@ -87,4 +87,4 @@ apt-get install dnsutils -y
 echo "nameserver 10.46.2.2" > /etc/resolv.conf 
 ``` 
 
-#### Testing
+##### Testing
