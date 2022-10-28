@@ -449,3 +449,213 @@ service apache2 restart
 lynx wise.itb03.com
 
 ![](gambar/24.png)
+
+lynx www.wise.itb03.com
+
+![](gambar/25.png)
+
+## Soal 9
+Setelah itu, Loid juga membutuhkan agar url www.wise.yyy.com/index.php/home dapat menjadi menjadi www.wise.yyy.com/home
+
+### Jawab soal 9
+Lakukan `a2enmod rewrite` terlebih dahulu dan restart apache sebagai berikut:
+
+```
+a2enmod rewrite
+service apache2 restart
+```
+
+konfigurasi file /var/www/wise.itb03.com/.htaccess sebagai berikut:
+
+```
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) /index.php/$1 [L]
+```
+
+Inti dari konfigurasi tersebut adalah kita melakukan cek apakah request tersebut adalah ke file atau bukan dan ke direktori atau bukan jika hal tersebut terpenuhi akan kita membuat rule untuk melakukan direct ke /index.php/home. $1 merupakan parameter yang diinputkan di url konfigurasi file /etc/apache2/sites-available/wise.itb03.com.conf dan menggunakan alias agar dapat menjadi `www.wise.itb03.com/home` sebagai berikut
+
+```
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/wise.itb03.com
+        ServerName wise.itb03.com
+        ServerAlias www.wise.itb03.com
+
+        Alias /home /var/www/wise.itb03.com/index.php/home
+
+        <Directory /var/www/wise.itb03.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
+```
+
+Melakukan restart service apache2 dengan `service apache2 restart`
+
+##### TESTING
+`www.wise.itb03.com/home`
+
+![](gambar/26.png)
+
+
+
+## Soal 10
+Setelah itu, pada subdomain www.eden.wise.yyy.com, Loid membutuhkan penyimpanan aset yang memiliki DocumentRoot pada /var/www/eden.wise.yyy.com
+
+### Jawab soal 10
+konfigurasi file `/etc/apache2/sites-available/eden.wise.itb03.com.conf` sebagai berikut:
+
+```
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/eden.wise.itb03.com
+        ServerName eden.wise.itb03.com
+        ServerAlias www.eden.wise.itb03.com
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /var/www/eden.wise.itb03.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+</VirtualHost>
+```
+
+Lalu lakukan membaut sebuah direkroti root untuk eden.wise.itb03.com dan memindahkan folder wise dalam root pada `/var/www/eden.wise.itb03.com/`
+
+```
+mkdir -p  `/var/www/wise.itb03.com/`
+mv wise/ /var/www/wise.itb03.com/
+service apache2 restart
+```
+
+##### TESTING
+
+![](gambar/27.png)
+
+
+## Soal 11
+Akan tetapi, pada folder /public, Loid ingin hanya dapat melakukan directory listing saja
+
+### Jawab soal 11
+konfigurasi file /etc/apache2/sites-available/eden.wise.itb03.com.conf menamahkan Options +Indexes ke direktori yang ingin di directory list sebagai berikut:
+
+```
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/eden.wise.itb03.com
+        ServerName eden.wise.itb03.com
+        ServerAlias www.eden.wise.itb03.com
+
+        <Directory /var/www/eden.wise.itb03.com/public>
+                Options +Indexes
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /var/www/eden.wise.itb03.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+</VirtualHost>
+```
+
+Melakukan restart service apache2 dengan `service apache2 restart`
+
+##### TESTING
+lynx www.eden.wise.itb03.com/public
+
+![](gambar/28.png)
+
+
+## Soal 12
+Tidak hanya itu, Loid juga ingin menyiapkan error file 404.html pada folder /error untuk mengganti error kode pada apache.
+
+### Jawab soal 12
+#### Server Eden
+konfigurasi file /etc/apache2/sites-available/eden.wise.itb03.com.conf menambahkan konfigurasi ErrorDocument untuk setiap error yang ada yang diarahkan ke file /error/404.html dengan sebagai berikut:
+
+```
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/eden.wise.itb03.com
+        ServerName eden.wise.itb03.com
+        ServerAlias www.eden.wise.itb03.com
+
+        ErrorDocument 404 /error/404.html
+        ErrorDocument 500 /error/404.html
+        ErrorDocument 502 /error/404.html
+        ErrorDocument 503 /error/404.html
+        ErrorDocument 504 /error/404.html
+
+        <Directory /var/www/eden.wise.itb03.com/public>
+                Options +Indexes
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /var/www/eden.wise.itb03.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+</VirtualHost>
+```
+
+Melakukan restart service apache2 dengan `service apache2 restart`
+
+##### TESTING
+lynx www.eden.wise.itb03.com/hehehe
+
+![](gambar/29.png)
+
+## Soal 13
+Loid juga meminta Franky untuk dibuatkan konfigurasi virtual host. Virtual host ini bertujuan untuk dapat mengakses file asset www.eden.wise.yyy.com/public/js menjadi www.eden.wise.yyy.com/js
+
+### Jawab soal 13
+Pada Eden akan dibuatkan konfigurasi virtual host. Virtual host ini bertujuan untuk dapat mengakses file asset www.eden.wise.itb03.com/public/js menjadi www.eden.wise.itb03.com/js dengan sebagai berikut:
+
+```
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/eden.wise.itb03.com
+        ServerName eden.wise.itb03.com
+        ServerAlias www.eden.wise.itb03.com
+
+        ErrorDocument 404 /error/404.html
+        ErrorDocument 500 /error/404.html
+        ErrorDocument 502 /error/404.html
+        ErrorDocument 503 /error/404.html
+        ErrorDocument 504 /error/404.html
+
+        <Directory /var/www/eden.wise.itb03.com/public>
+                Options +Indexes
+        </Directory>
+
+        Alias /js /var/www/eden.wise.itb03.com/public/js
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /var/www/eden.wise.itb03.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+</VirtualHost>
+```
+
+Melakukan restart service apache2 dengan `service apache2 restart`
+
+##### TESTING
+lynx www.eden.wise.itb03.com/js  
+
+![](gambar/30.png)
+
