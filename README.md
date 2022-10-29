@@ -189,6 +189,7 @@ $TTL    604800
 Agar dapat tetap dihubungi jika server WISE bermasalah, buatlah juga Berlint sebagai DNS Slave untuk domain utama
 
 ### **Penyelesaian Soal 5**
+#### **Server WISE**
 kami melakukan konfigurasi pada file `/etc/bind/named.conf.local` sebagai berikut untuk melakukan konfigurasi DNS Slave yang mengarah ke `Berlint`:
 
 ```
@@ -447,6 +448,7 @@ service apache2 restart
 Setelah itu, Loid juga membutuhkan agar url www.wise.yyy.com/index.php/home dapat menjadi menjadi www.wise.yyy.com/home
 
 ### **Penyelesaian Soal 9**
+#### **Server Eden**
 Lakukan `a2enmod rewrite` terlebih dahulu dan restart apache sebagai berikut:
 
 ```
@@ -491,12 +493,12 @@ Melakukan restart service apache2 dengan `service apache2 restart`
 - www.wise.itb03.com/home
 ![](gambar/26.png)
 
-
 ## **Soal 10**
 ---
 Setelah itu, pada subdomain www.eden.wise.yyy.com, Loid membutuhkan penyimpanan aset yang memiliki DocumentRoot pada /var/www/eden.wise.yyy.com
 
 ### **Penyelesaian Soal 10**
+#### **Server Eden**
 konfigurasi file `/etc/apache2/sites-available/eden.wise.itb03.com.conf` sebagai berikut:
 
 ```
@@ -535,7 +537,8 @@ service apache2 restart
 Akan tetapi, pada folder /public, Loid ingin hanya dapat melakukan directory listing saja
 
 ### **Penyelesaian Soal 11**
-konfigurasi file` /etc/apache2/sites-available/eden.wise.itb03.com.conf` menambahkan `Options +Indexes` ke direktori yang ingin di directory list dengan sebagai berikut:
+#### **Server Eden**
+konfigurasi file `/etc/apache2/sites-available/eden.wise.itb03.com.conf` menambahkan `Options +Indexes` ke direktori yang ingin di directory list dengan sebagai berikut:
 
 ```
 <VirtualHost *:80>
@@ -563,7 +566,6 @@ Melakukan restart service apache2 dengan `service apache2 restart`
 ### **Testing**
 - lynx www.eden.wise.itb03.com/public
 ![](gambar/28.png)
-
 
 ## **Soal 12**
 ---
@@ -698,6 +700,7 @@ Melakukan restart service apache2 dengan command `service apache2 restart`
 ### **Testing**
 - lynx strix.operation.wise.itb03.com:15000
 ![](gambar/31.png)
+
 - lynx strix.operation.wise.itb03.com:15500
 ![](gambar/32.png)
 
@@ -735,6 +738,7 @@ Melakukan restart service apache2 dengan command `service apache2 restart`
 ### **Testing**
 - lynx strix.operation.wise.itb03.com:15000
 ![](gambar/33.png)
+
 ## **Soal 16**
 ---
 dan setiap kali mengakses IP Eden akan dialihkan secara otomatis ke www.wise.yyy.com
@@ -759,6 +763,7 @@ Dan melakukan restart service apache2 dengan command `service apache2 restart`
 ### **Testing**
 - Pada Terminal SSS
 ![](gambar/34.jpg)
+
 - lynx 10.46.3.3
 ![](gambar/35.jpg)
 
@@ -810,6 +815,7 @@ Dam melakukan restart service apache2 dengan `service apache2 restart`
 ### **Testing**
 - lynx eden.wise.itb03.com/public/images/HAHAHAHeden
 ![](gambar/36.png)
+
 - Hasil Download pada Client SSS
 ![](gambar/37.png)
 
