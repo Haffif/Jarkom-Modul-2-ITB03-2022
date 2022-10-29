@@ -91,13 +91,13 @@ echo "nameserver 10.46.2.2" > /etc/resolv.conf
 ``` 
 
 ### **Testing**
-- ping wise.itb03.com -c 5
+- ping wise.itb03.com -c 5 <br>
 ![](gambar/8.png)
 
-- ping www.wise.itb03.com -c 5
+- ping www.wise.itb03.com -c 5 <br>
 ![](gambar/9.png)
 
-- host -t CNAME www.wise.itb03.com`
+- host -t CNAME www.wise.itb03.com <br>
 ![](gambar/10.png)
 
 
@@ -130,16 +130,16 @@ www.eden      IN      CNAME   eden.wise.itb03.com
 Melakukan restart sevice bind9 dengan `service bind9 restart`
 
 ### **Testing**
-- ping eden.wise.itb03.com -c 5
+- ping eden.wise.itb03.com -c 5 <br>
 ![](gambar/11.png)
 
-- ping www.eden.wise.itb03.com -c 5
+- ping www.eden.wise.itb03.com -c 5 <br>
 ![](gambar/12.png)
 
-- host -t A eden.wise.itb03.com
+- host -t A eden.wise.itb03.com <br>
 ![](gambar/13.png)
 
-- host -t CNAME www.eden.wise.itb03.com
+- host -t CNAME www.eden.wise.itb03.com <br>
 ![](gambar/14.png)
 
 
@@ -180,7 +180,7 @@ $TTL    604800
 ```
 
 ### **Testing**
-- host -t PTR 10.46.2.2
+- host -t PTR 10.46.2.2 <br>
 ![](gambar/15.png)
 
 
@@ -223,10 +223,10 @@ zone "wise.itb03.com" {
 Lalu, restart seevice bind9 kembali dengan `service bind9 restart`
 
 ### **Testing**
-- Lakukan `service bind9 stop` terlebih dahulu pada server WISE.
+- Lakukan `service bind9 stop` terlebih dahulu pada server WISE. <br>
 ![](gambar/16.png)
 
-- Melakukan ping pada Garden
+- Melakukan ping pada Garden <br>
 ![](gambar/17.png)
 
 
@@ -437,10 +437,10 @@ service apache2 restart
 ```
 
 ### **Testing**
-- lynx wise.itb03.com 
+- lynx wise.itb03.com <br>
 ![](gambar/24.png)
 
-- lynx www.wise.itb03.com 
+- lynx www.wise.itb03.com <br>
 ![](gambar/25.png)
 
 ## **Soal 9**
@@ -490,7 +490,7 @@ Inti dari konfigurasi tersebut yaitu akan melakukan pemeriksaan apakah request t
 Melakukan restart service apache2 dengan `service apache2 restart`
 
 ### **Testing**
-- www.wise.itb03.com/home
+- www.wise.itb03.com/home <br>
 ![](gambar/26.png)
 
 ## **Soal 10**
@@ -528,7 +528,7 @@ service apache2 restart
 ```
 
 ### **Testing**
-- lynx eden.wise.itb03.com
+- lynx eden.wise.itb03.com <br>
 ![](gambar/27.png)
 
 
@@ -816,7 +816,7 @@ Dam melakukan restart service apache2 dengan `service apache2 restart`
 - lynx eden.wise.itb03.com/public/images/HAHAHAHeden
 ![](gambar/36.png)
 
-- Hasil Download pada Client SSS
+- Hasil Download pada Client SSS <br>
 ![](gambar/37.png)
 
 ## **Kendala**
