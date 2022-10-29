@@ -761,7 +761,7 @@ Melakukan konfigurasi file /etc/apache2/sites-available/000-default.conf dengan 
 Dan melakukan restart service apache2 dengan command `service apache2 restart`
 
 ### **Testing**
-- Pada Terminal SSS 
+- Pada Terminal SSS <br>
 ![](gambar/34.jpg)
 
 - lynx 10.46.3.3
